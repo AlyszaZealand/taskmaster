@@ -1,0 +1,39 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Start Server (server.js)",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/server.js",
+            "restart": true,
+            "console": "integratedTerminal",
+            "runtimeExecutable": "C:/Users/Matia/AppData/Roaming/JetBrains/WebStorm2026.2/node/versions/24.21.0/node.exe"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Kør Simulation (simulate.js)",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/simulate.js",
+            "console": "integratedTerminal",
+            "runtimeExecutable": "C:/Users/Matia/AppData/Roaming/JetBrains/WebStorm2026.2/node/versions/24.21.0/node.exe"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Kør aktiv fil",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "runtimeExecutable": "C:/Users/Matia/AppData/Roaming/JetBrains/WebStorm2026.2/node/versions/24.21.0/node.exe"
+        }
+    ]
+}

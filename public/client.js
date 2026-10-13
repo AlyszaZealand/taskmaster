@@ -1,7 +1,14 @@
 async function getTasks() {
     const res = await fetch('/api/tasks');
-    if (!res.ok) throw new Error('Kunne ikke hente opgaver.');
+    if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Kunne ikke hente opgaver.');
+    }
     const tasks = await res.json();
+    if (!Array.isArray(tasks)) {
+        throw new Error('Ugyldigt dataformat modtaget for opgaver.');
+    }
+
     const list = document.getElementById('taskList');
     list.innerHTML = '';
 
@@ -22,22 +29,36 @@ async function getTasks() {
 async function addTask() {
     const input = document.getElementById('newTask');
     const name = input.value.trim();
-    if (!name) return;
+    if (!name) {
+        throw new Error('Indtast venligst et opgavenavn.');
+    }
 
-    const newTask = { id: crypto.randomUUID(), name}
+    const newTask = { id: crypto.randomUUID(), name };
     const res = await fetch('/api/tasks', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(newTask)
     });
-    if (!res.ok) throw new Error('Kunne ikke tilføje opgaven.');
+
+    if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Kunne ikke tilføje opgaven.');
+    }
+
     input.value = '';
     await getTasks();
 }
 
 async function deleteTask(id) {
-    const res = await fetch(`/api/tasks/${encodeURIComponent(id)}`, {method: 'DELETE'});
-    if (!res.ok) throw new Error('Kunne ikke slette opgaven.');
+    if (!id) {
+        throw new Error('Ugyldigt opgave-ID.');
+    }
+
+    const res = await fetch(`/api/tasks/${encodeURIComponent(id)}`, { method: 'DELETE' });
+    if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Kunne ikke slette opgaven.');
+    }
     await getTasks();
 }
 
@@ -57,4 +78,9 @@ async function run(action) {
 }
 
 document.getElementById('addBtn').addEventListener('click', () => run(addTask));
+document.getElementById('newTask').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        run(addTask);
+    }
+});
 window.addEventListener('load', () => run(getTasks));
