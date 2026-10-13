@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 
-const DATA_PATH = path.join(__dirname,'data', 'tasks.json')
+const DATA_PATH = path.join(__dirname, ".." ,'data', 'tasks.json')
 
 async function handleGetAllTasks(){
     return await fs.readJson(DATA_PATH);
