@@ -9,7 +9,9 @@ Der ville vi udskifte vores filhåndtering i vores service/business-logik lag, m
 
 ### Hvad sker der, hvis to brugere tilføjer på samme tid? 
 
-
+Det kan vi umiddelbart ikke, vi satte et midlertidigt forsøg op med brug af axios, men det var kun 1 ud af 10 som faktisk blev tilføjet til listen.
+Vi havde samtale med en agent, som nævnte muligheden om at serialisere adgang til en kø, som kun kan tage én ad gangen, for at sikre at der først bliver indlæst json filen efter den tidligere request er færdig med at skrive til samme fil.
+Men det virkede lidt kompliceret, så vi har ikke endt med at tilføje det, da vi ikke helt forstår det.
 
 
 ### Hvordan kunne man udvide med status, redigering eller deadlines? 
