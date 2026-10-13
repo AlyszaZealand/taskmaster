@@ -14,6 +14,9 @@ Vi havde samtale med en agent, som nævnte muligheden om at serialisere adgang t
 Men det virkede lidt kompliceret, så vi har ikke endt med at tilføje det, da vi ikke helt forstår det.
 
 
+#### Løsningen som agenten kom frem til er lagt i en separat branch med navnet "agent-concurrency" for at vi selv kunne kigge videre på den.
+
+
 ### Hvordan kunne man udvide med status, redigering eller deadlines? 
 
 Man kunne f.eks. tilføje en "færdigt" ja eller nej status, man kunne tilføje en knap til at redigere indtastede "tasks", og man kunne have dato for hvornår den blev oprettet, samt hvornår en given deadline kunne være.
