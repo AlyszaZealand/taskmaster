@@ -6,21 +6,13 @@ const taskRouter = require("./routes/taskRoutes")
 
 const PORT = 3000;
 
-app.use("/api/tasks", taskRouter)
-
 // Middleware
 app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')))
 
 
+app.use("/api/tasks", taskRouter)
 
-/*
-// Console
-app.get('/', (req, res) => {
-    res.json({message: "Backend is now running"});
-});
-
-*/
 
 // Start
 app.listen(PORT, () => {

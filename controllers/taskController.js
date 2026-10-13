@@ -24,7 +24,7 @@ async function deleteTask(req, res){
     try {
         await taskService.handleDeleteTask(req);
         res.status(201).json({ message: 'Opgaven blev slettet'})
-    } catch {
+    } catch (err) {
         res.status(500).json({ error: 'Kunne ikke slette opgaven'})
     }
 }
